@@ -3,7 +3,6 @@ package astits
 import (
 	"errors"
 	"fmt"
-	"github.com/asticode/go-astikit"
 )
 
 // Scrambling Controls
@@ -152,7 +151,7 @@ func parsePacketHeader(i *astikit.BytesIterator) (h PacketHeader, err error) {
 		PID:                        uint16(bs[0]&0x1f)<<8 | uint16(bs[1]),
 		TransportErrorIndicator:    bs[0]&0x80 > 0,
 		TransportPriority:          bs[0]&0x20 > 0,
-		TransportScramblingControl: uint8(bs[2]) >> 6 & 0x3,
+		TransportScramblingControl: uint8(bs[2]) >> 6 & 0x03,
 	}, nil
 }
 
